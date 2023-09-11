@@ -1943,11 +1943,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Users\\K\\source\\repos\\ContosoUniversity\\ContosoUniversity\\ContosoUniversity.csproj",
+      "projectUniqueName": "G:\\Users\\K\\source\\repos\\ContosoUniversityTARpe21\\clone tarpe22\\ContosoUniversityTARpe22\\ContosoUniversity.csproj",
       "projectName": "ContosoUniversity",
-      "projectPath": "G:\\Users\\K\\source\\repos\\ContosoUniversity\\ContosoUniversity\\ContosoUniversity.csproj",
+      "projectPath": "G:\\Users\\K\\source\\repos\\ContosoUniversityTARpe21\\clone tarpe22\\ContosoUniversityTARpe22\\ContosoUniversity.csproj",
       "packagesPath": "G:\\Users\\K\\.nuget\\packages\\",
-      "outputPath": "G:\\Users\\K\\source\\repos\\ContosoUniversity\\ContosoUniversity\\obj\\",
+      "outputPath": "G:\\Users\\K\\source\\repos\\ContosoUniversityTARpe21\\clone tarpe22\\ContosoUniversityTARpe22\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eDiE6Q8K4ANoMDrOO/UDAnUGA4+/GU1uPZDQVSa66KveTtsaYBdsppIgx3MZIHncHecSsVTDj8Jjy1PywZV/dQ==",
+  "dgSpecHash": "wgyxTSI76sMQebTOiWDvUuGS3kVaQCBcXVDR+RMBDb/UzliLTQk56KN80CPHK56T/EMV9Ph9CPwPr00XTLtfGg==",
   "success": true,
-  "projectFilePath": "G:\\Users\\K\\source\\repos\\ContosoUniversity\\ContosoUniversity\\ContosoUniversity.csproj",
+  "projectFilePath": "G:\\Users\\K\\source\\repos\\ContosoUniversityTARpe21\\clone tarpe22\\ContosoUniversityTARpe22\\ContosoUniversity.csproj",
   "expectedPackageFiles": [
     "G:\\Users\\K\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\6.0.21\\microsoft.aspnetcore.diagnostics.entityframeworkcore.6.0.21.nupkg.sha512",
     "G:\\Users\\K\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
