@@ -71,64 +71,64 @@ namespace ContosoUniversity.Data
             }
             context.SaveChanges();
 
-            var officeAssignments = new OfficeAssignment[]
-            {
-                new OfficeAssignment
-                {
-                    InstructorID = instructors.Single(i=>i.LastName == "Kardashian").ID, Location= "Classroom D420"
-                },
-                new OfficeAssignment
-                {
-                    InstructorID = instructors.Single(i=>i.LastName == "Bean").ID, Location= "Classroom A004"
-                },
-                new OfficeAssignment
-                {
-                    InstructorID = instructors.Single(i=>i.LastName == "Reynolds").ID, Location= "T001"
-                },
-                new OfficeAssignment
-                {
-                    InstructorID = instructors.Single(i=>i.LastName == "Oss").ID, Location= "Balta Burger King"
-                }
-            };
-            foreach (OfficeAssignment o in officeAssignments)
-            {
-                context.OfficeAssignments.Add(o);
-            }
-            context.SaveChanges();
+            //var officeAssignments = new OfficeAssignment[]
+            //{
+            //    new OfficeAssignment
+            //    {
+            //        InstructorID = instructors.Single(i=>i.LastName == "Kardashian").ID, Location= "Classroom D420"
+            //    },
+            //    new OfficeAssignment
+            //    {
+            //        InstructorID = instructors.Single(i=>i.LastName == "Bean").ID, Location= "Classroom A004"
+            //    },
+            //    new OfficeAssignment
+            //    {
+            //        InstructorID = instructors.Single(i=>i.LastName == "Reynolds").ID, Location= "T001"
+            //    },
+            //    new OfficeAssignment
+            //    {
+            //        InstructorID = instructors.Single(i=>i.LastName == "Oss").ID, Location= "Balta Burger King"
+            //    }
+            //};
+            //foreach (OfficeAssignment o in officeAssignments)
+            //{
+            //    context.OfficeAssignments.Add(o);
+            //}
+            //context.SaveChanges();
 
-            var courseInstructors = new CourseAssignment[]
-            {
-                new CourseAssignment
-                {
-                    CourseID = courses.Single(c => c.Title == "Programming").CourseID,
-                    InstructorID = instructors.Single(i => i.LastName == "Kardashian").ID
-                },
-                new CourseAssignment
-                {
-                    CourseID = courses.Single(c => c.Title == "Databases 101").CourseID,
-                    InstructorID = instructors.Single(i => i.LastName == "Bean").ID
-                },
-                new CourseAssignment
-                {
-                    CourseID = courses.Single(c => c.Title == "Html stuff").CourseID,
-                    InstructorID = instructors.Single(i => i.LastName == "Reynolds").ID
-                },
-                new CourseAssignment
-                {
-                    CourseID = courses.Single(c => c.Title == "Cupcakes").CourseID,
-                    InstructorID = instructors.Single(i => i.LastName == "Karis").ID
-                },
-                new CourseAssignment
-                {
-                    CourseID = courses.Single(c => c.Title == "Chocolate tempering").CourseID,
-                    InstructorID = instructors.Single(i => i.LastName == "Kardashian").ID
-                },
-            };
-            foreach (CourseAssignment ci in courseInstructors)
-            {
-                context.CourseAssignments.Add(ci);
-            }
-            context.SaveChanges();
+            //var courseInstructors = new CourseAssignment[]
+            //{
+            //    new CourseAssignment
+            //    {
+            //        CourseID = courses.Single(c => c.Title == "Programming").CourseID,
+            //        InstructorID = instructors.Single(i => i.LastName == "Kardashian").ID
+            //    },
+            //    new CourseAssignment
+            //    {
+            //        CourseID = courses.Single(c => c.Title == "Databases 101").CourseID,
+            //        InstructorID = instructors.Single(i => i.LastName == "Bean").ID
+            //    },
+            //    new CourseAssignment
+            //    {
+            //        CourseID = courses.Single(c => c.Title == "Html stuff").CourseID,
+            //        InstructorID = instructors.Single(i => i.LastName == "Reynolds").ID
+            //    },
+            //    new CourseAssignment
+            //    {
+            //        CourseID = courses.Single(c => c.Title == "Cupcakes").CourseID,
+            //        InstructorID = instructors.Single(i => i.LastName == "Karis").ID
+            //    },
+            //    new CourseAssignment
+            //    {
+            //        CourseID = courses.Single(c => c.Title == "Chocolate tempering").CourseID,
+            //        InstructorID = instructors.Single(i => i.LastName == "Kardashian").ID
+            //    },
+            //};
+            //foreach (CourseAssignment ci in courseInstructors)
+            //{
+            //    context.CourseAssignments.Add(ci);
+            //}
+            //context.SaveChanges();
 
             var enrollments = new Enrollment[]
             {
