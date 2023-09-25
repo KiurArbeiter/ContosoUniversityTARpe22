@@ -2,6 +2,7 @@
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ContosoUniversity.Controllers
 {
@@ -16,17 +17,7 @@ namespace ContosoUniversity.Controllers
         {
             var vm = new InstructorIndexData();
             vm.Instructors = await _context.Instructors
-                .Include(i => i.OfficeAssignment)
-                .Include(i => i.CourseAssignments)
-                .ThenInclude(i => i.Course)
-                .ThenInclude(i => i.Enrollments)
-                .ThenInclude(i => i.Student)
-                .Include(i => i.CourseAssignments)
-                .ThenInclude(i => i.Course)
-                .ThenInclude(i => i.Department)
-                .AsNoTracking()
-                .OrderBy(i => i.LastName)
-                .ToListAsync();
+                .Include(i => i.OfficeAssignment).Include(i => i.CourseAssignments).ThenInclude(i => i.Course).ThenInclude(i => i.Enrollments).ThenInclude(i => i.Student).Include(i => i.CourseAssignments).ThenInclude(i => i.Course).ThenInclude(i => i.Department).AsNoTracking().OrderBy(i => i.LastName).ToListAsync();
             if (id != null)
             {
                 ViewData["InstructorID"] = id.Value;
@@ -153,6 +144,38 @@ namespace ContosoUniversity.Controllers
             PopulateAssignedCourseData(instructorToUpdate);
 
             return View();
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+            var instructor = await _context.Instructors
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+            return View(instructor);
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            Instructor instructor = await _context.Instructors
+                .Include(i => i.CourseAssignments)
+                .SingleAsync(i => i.ID == id);
+            var departments = await _context.Departments
+                .Where(d => d.InstructorID == null)
+                .ToListAsync();
+            departments.ForEach(d => d.InstructorID = null);
+
+            _context.Instructors.Remove(instructor);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         private void UpdateInstructorCourses(string[] selectedCourses, Instructor instructorToUpdate)
