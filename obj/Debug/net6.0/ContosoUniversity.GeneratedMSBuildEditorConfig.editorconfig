@@ -16,8 +16,40 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\opilane\source\repos\TARpe22\ContosoUniversityTARpe22\ContosoUniversityTARpe22
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/opilane/source/repos/TARpe22/ContosoUniversityTARpe22/ContosoUniversityTARpe22/Contoso/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/opilane/source/repos/TARpe22/ContosoUniversityTARpe22/ContosoUniversityTARpe22/Contoso/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/opilane/source/repos/TARpe22/ContosoUniversityTARpe22/ContosoUniversityTARpe22/Contoso/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/opilane/source/repos/TARpe22/ContosoUniversityTARpe22/ContosoUniversityTARpe22/Contoso/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/opilane/source/repos/TARpe22/ContosoUniversityTARpe22/ContosoUniversityTARpe22/Contoso/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/opilane/source/repos/TARpe22/ContosoUniversityTARpe22/ContosoUniversityTARpe22/Views/Departments/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/opilane/source/repos/TARpe22/ContosoUniversityTARpe22/ContosoUniversityTARpe22/Views/Departments/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/opilane/source/repos/TARpe22/ContosoUniversityTARpe22/ContosoUniversityTARpe22/Views/Departments/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/opilane/source/repos/TARpe22/ContosoUniversityTARpe22/ContosoUniversityTARpe22/Views/Departments/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/opilane/source/repos/TARpe22/ContosoUniversityTARpe22/ContosoUniversityTARpe22/Views/Departments/index.cshtml]

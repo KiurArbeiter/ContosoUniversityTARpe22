@@ -121,18 +121,6 @@ namespace ContosoUniversity.Controllers
                     "see your system administrator.";
             }
             return RedirectToAction(nameof(Index));
-
-            //var student = await _context.Students
-            //    .AsNoTracking()
-            //    .FirstOrDefaultAsync(m => m.ID == id);
-            //if (student == null)
-            //{
-            //    return NotFound();
-            //}
-
-            
-            //return View(student);
-
         }
 
         private async Task<Student> getStudentById(int? id)

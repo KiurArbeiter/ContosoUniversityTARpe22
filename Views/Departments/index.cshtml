@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<ContosoUniversity.Models.Department>
 
-<h2>Instructors</h2>
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Departments</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -23,7 +26,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Administrator)
             </th>
-
         </tr>
     </thead>
     <tbody>

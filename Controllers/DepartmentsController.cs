@@ -53,7 +53,7 @@ namespace ContosoUniversity.Controllers
         //Create post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DepartmentID, Name, Budget, StartDate, InstructorID, RowVersion")] Department department)
+        public async Task<IActionResult> Create([Bind("Name,Budget,StartDate,InstructorID,RowVersion")] Department department)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +88,9 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, byte[] rowVersion)
         {
+            ModelState.Remove("Courses");
+            ModelState.Remove("Administrators");
+            ModelState.Remove("RowVersion");
             if (id == null)
             {
                 return NotFound();

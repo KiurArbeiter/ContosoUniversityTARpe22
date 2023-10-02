@@ -60,28 +60,47 @@ namespace ContosoUniversity.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Instructor instructor, string selectedCourses)
+        //public async Task<IActionResult> Create(Instructor instructor, string selectedCourses)
+        //{
+        //    if (selectedCourses == null)
+        //    {
+        //        instructor.CourseAssignments = new List<CourseAssignment>();
+        //        foreach (var course in selectedCourses)
+        //        {
+        //            var courseToAdd = new CourseAssignment
+        //            {
+        //                InstructorID = instructor.ID,
+        //                CourseID = course
+        //            };
+        //            instructor.CourseAssignments.Add(courseToAdd);
+        //        }
+        //    }
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(instructor);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    PopulateAssignedCourseData(instructor);
+        //    return View(instructor);
+        //}
+        public async Task<IActionResult> Create([Bind("HireDate,FirstMidName,LastName")] Instructor instructor)
         {
-            if (selectedCourses == null)
+            try
             {
-                instructor.CourseAssignments = new List<CourseAssignment>();
-                foreach (var course in selectedCourses)
+                if (ModelState.IsValid)
                 {
-                    var courseToAdd = new CourseAssignment
-                    {
-                        InstructorID = instructor.ID,
-                        CourseID = course
-                    };
-                    instructor.CourseAssignments.Add(courseToAdd);
+                    _context.Add(instructor);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
             }
-            if (ModelState.IsValid)
+            catch (DbUpdateException)
             {
-                _context.Add(instructor);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("", "Unable to save changes" +
+                    "Try again, and if the problem persists" +
+                    "see your system administrator");
             }
-            PopulateAssignedCourseData(instructor);
             return View(instructor);
         }
         [HttpGet]
@@ -91,60 +110,87 @@ namespace ContosoUniversity.Controllers
             {
                 return NotFound();
             }
-            var instructor = await _context.Instructors
+            var Instructor = await _context.Instructors
                 .Include(i => i.OfficeAssignment)
                 .Include(i => i.CourseAssignments)
                 .ThenInclude(i => i.Course)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (instructor == null)
+            if (Instructor == null)
             {
                 return NotFound();
             }
-            PopulateAssignedCourseData(instructor);
-            return View(instructor);
+            PopulateAssignedCourseData(Instructor);
+            return View(Instructor);
         }
-        [HttpPost]
+        [HttpPost, ActionName ("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int? id, string[] selectedCourses)
+        public async Task<IActionResult> EditPost(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var instructorToUpdate = await _context.Instructors
-                .Include(i => i.OfficeAssignment)
-                .Include(i => i.CourseAssignments)
-                .ThenInclude(i => i.Course)
-                .FirstOrDefaultAsync(s => s.ID == id);
+            var instructorToUpdate = await _context.Instructors.FirstOrDefaultAsync(s => s.ID == id);
             if (await TryUpdateModelAsync<Instructor>(instructorToUpdate, "",
-                i => i.FirstMidName,
-                i => i.LastName,
-                i => i.HireDate,
-                i => i.OfficeAssignment))
+                s => s.FirstMidName,
+                s => s.LastName,
+                s => s.HireDate,
+                s => s.OfficeAssignment))
             {
-                if (string.IsNullOrWhiteSpace(instructorToUpdate.OfficeAssignment?.Location))
-                {
-                    instructorToUpdate.OfficeAssignment = null;
-                }
-                UpdateInstructorCourses(selectedCourses, instructorToUpdate);
                 try
                 {
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateException)
                 {
-                    ModelState.AddModelError("", "Unable to save changes. " +
-                        "Try Again, and if the problem persists, " +
-                        "see your local computermonkey.");
+                    ModelState.AddModelError("", "Unable to save changes" +
+                    "Try again, and if the problem persists" +
+                    "see your system administrator");
                 }
-                return RedirectToAction(nameof(Index));
             }
-            UpdateInstructorCourses(selectedCourses, instructorToUpdate);
-            PopulateAssignedCourseData(instructorToUpdate);
-
-            return View();
+            return View(instructorToUpdate);
         }
+        //public async Task<IActionResult> Edit(int? id, string[] selectedCourses)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var instructorToUpdate = await _context.Instructors
+        //        .Include(i => i.OfficeAssignment)
+        //        .Include(i => i.CourseAssignments)
+        //        .ThenInclude(i => i.Course)
+        //        .FirstOrDefaultAsync(s => s.ID == id);
+        //    if (await TryUpdateModelAsync<Instructor>(instructorToUpdate, "",
+        //        i => i.FirstMidName,
+        //        i => i.LastName,
+        //        i => i.HireDate,
+        //        i => i.OfficeAssignment))
+        //    {
+        //        if (string.IsNullOrWhiteSpace(instructorToUpdate.OfficeAssignment?.Location))
+        //        {
+        //            instructorToUpdate.OfficeAssignment = null;
+        //        }
+        //        UpdateInstructorCourses(selectedCourses, instructorToUpdate);
+        //        try
+        //        {
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateException)
+        //        {
+        //            ModelState.AddModelError("", "Unable to save changes. " +
+        //                "Try Again, and if the problem persists, " +
+        //                "see your local computermonkey.");
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    UpdateInstructorCourses(selectedCourses, instructorToUpdate);
+        //    PopulateAssignedCourseData(instructorToUpdate);
+
+        //    return View();
+        //}
 
         public async Task<IActionResult> Delete(int? id)
         {
@@ -162,23 +208,41 @@ namespace ContosoUniversity.Controllers
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    Instructor instructor = await _context.Instructors
+        //        .Include(i => i.CourseAssignments)
+        //        .SingleAsync(i => i.ID == id);
+        //    var departments = await _context.Departments
+        //        .Where(d => d.InstructorID == null)
+        //        .ToListAsync();
+        //    departments.ForEach(d => d.InstructorID = null);
+
+        //    _context.Instructors.Remove(instructor);
+
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Instructor instructor = await _context.Instructors
-                .Include(i => i.CourseAssignments)
-                .SingleAsync(i => i.ID == id);
-            var departments = await _context.Departments
-                .Where(d => d.InstructorID == null)
-                .ToListAsync();
-            departments.ForEach(d => d.InstructorID = null);
-
-            _context.Instructors.Remove(instructor);
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var instructor = await _context.Instructors.FindAsync(id);
+            if (instructor == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            try
+            {
+                _context.Instructors.Remove(instructor);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException)
+            {
+                return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
+            }
         }
 
-        private void UpdateInstructorCourses(string[] selectedCourses, Instructor instructorToUpdate)
+private void UpdateInstructorCourses(string[] selectedCourses, Instructor instructorToUpdate)
         {
             if (selectedCourses == null)
             {

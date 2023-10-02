@@ -9,7 +9,7 @@
 
 <div>
     <h4>Student</h4>
-    <hr/>
+    <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.LastName)
@@ -40,15 +40,15 @@
                 </tr>
                 @foreach (var item in Model.Enrollments)
                 {
-                    
-                <tr>
-                    <td>
+
+                    <tr>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Course.Title)
-                    </td>
-                    <td>
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Grade)
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 }
             </table>
         </dd>
